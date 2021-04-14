@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1046381976405",
+    "project_id": "therapy-buddy",
+    "storage_bucket": "therapy-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046381976405:android:402cc0b1947d79575deddc",
+        "android_client_info": {
+          "package_name": "com.example.therapybuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046381976405-mkatk67l0q8oqna79fbnlrugcoum3gt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDykHjHDgV7jN0SwgC1RUD4BZjy5Tcrpa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046381976405-mkatk67l0q8oqna79fbnlrugcoum3gt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
