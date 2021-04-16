@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TherapyBuddy">
+<<<<<<< HEAD
         <activity android:name=".HomeActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         </activity>
+=======
+        <activity android:name=".MoodLogActivity"></activity>
+        <activity android:name=".HomeActivity" />
+>>>>>>> cd18c4e6bcfdaaf54eb2f87ccb280c7f258124ea
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
