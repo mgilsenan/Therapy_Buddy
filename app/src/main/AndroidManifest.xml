@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TherapyBuddy">
-        <activity android:name=".HomeActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        </activity>
-        <activity android:name=".MoodLogActivity"></activity>
+        <activity android:name=".WorkSheetsActivity"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
+        <activity android:name=".MoodLogActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
