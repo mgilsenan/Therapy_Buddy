@@ -3,7 +3,6 @@ package com.example.therapybuddy;
 import java.util.Date;
 
 public class MoodLog {
-    String date;
     String mood;
     String moodDetails;
     /*
@@ -11,16 +10,9 @@ public class MoodLog {
 
     }
      */
-    public MoodLog(String date,String mood, String moodDetails) {
-        this.date = date;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public MoodLog(String mood, String moodDetails) {
+        this.mood = mood;
+        this.moodDetails = moodDetails;
     }
 
     public String getMood() {

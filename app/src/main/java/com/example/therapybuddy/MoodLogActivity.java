@@ -27,8 +27,6 @@ public class MoodLogActivity extends AppCompatActivity {
     DatabaseReference reference;
     private boolean relativeValue[] = new boolean[5];
     Button moodLogSubmitBtn;
-
-    //ImageButton relativeLayout_rad;
     TextInputLayout moodLogFeelings;
     RelativeLayout relativeLayout_rad;
     RelativeLayout relativeLayout_good;
@@ -68,16 +66,15 @@ public class MoodLogActivity extends AppCompatActivity {
                 if (!validateInput()) {
                     toast = Toast.makeText(MoodLogActivity.this, "Please select a mood", Toast.LENGTH_LONG);
                     toast.show();
-                }
-                else {
-                    DateFormat d = new SimpleDateFormat("yyyy/MM/dd");
+                } else {
+                    DateFormat d = new SimpleDateFormat("yyyy-MM-dd");
                     Calendar cal = Calendar.getInstance();
                     String date = d.format(cal.getTime());
-                    if(LoginActivity.getUser().getMoodLog().contains(date)){
+                    if (reference.child(LoginActivity.getUser().phone).child("moodLog").child(date) != null) {
                         toast = Toast.makeText(MoodLogActivity.this, "Today's mood has been selected already!", Toast.LENGTH_LONG);
                         toast.show();
-                    }
-                    else {
+                    } else {
+
                         String mood = "";
                         String moodDetails = moodLogFeelings.getEditText().getText().toString().trim();
                         for (int i = 0; i < relativeValue.length; i++) {
@@ -92,17 +89,14 @@ public class MoodLogActivity extends AppCompatActivity {
                             else if (relativeValue[4])
                                 mood = "Awful";
                         }
-                        MoodLog m = new MoodLog(date, mood, moodDetails);
-                        LoginActivity.getUser().getMoodLog().add(m);
-                        reference.child(LoginActivity.getUser().phone).setValue(LoginActivity.getUser());
+                        MoodLog m = new MoodLog(mood, moodDetails);
+                        reference.child(LoginActivity.getUser().phone).child("moodLog").child(date).setValue(m);  //Get the array
                         toast = Toast.makeText(MoodLogActivity.this, "Successful", Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }
-
             }
         });
-
     }
 
     protected boolean validateInput(){
