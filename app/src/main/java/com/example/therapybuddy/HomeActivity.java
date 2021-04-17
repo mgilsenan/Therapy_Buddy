@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -75,4 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public void btn_moodleLog(View view) {
+        startActivity(new Intent(getApplicationContext(),MoodLogActivity.class));
+    }
 }
