@@ -55,7 +55,8 @@
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
                     app:layout_row="0"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:onClick="btn_moodleLog">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -96,7 +97,8 @@
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
                     app:layout_row="0"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:onClick="worksheetsButtonAction">
 
                     <LinearLayout
                         android:layout_width="match_parent"

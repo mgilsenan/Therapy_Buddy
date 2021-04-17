@@ -123,4 +123,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+    public void worksheetsButtonAction(View view){
+        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
+    }
 }
