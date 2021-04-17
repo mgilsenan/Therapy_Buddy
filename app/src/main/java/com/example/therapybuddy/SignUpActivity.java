@@ -90,8 +90,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void continueBtnAction(){
         continueBtn.setOnClickListener(new View.OnClickListener() {
-
-
             // save user obj in realtime database: phone number is unique user id
             // if same phone number user info over write
             @Override
