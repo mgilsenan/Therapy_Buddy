@@ -1,5 +1,6 @@
 package com.example.therapybuddy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,8 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -70,30 +74,42 @@ public class MoodLogActivity extends AppCompatActivity {
                     DateFormat d = new SimpleDateFormat("yyyy-MM-dd");
                     Calendar cal = Calendar.getInstance();
                     String date = d.format(cal.getTime());
-                    if (reference.child(LoginActivity.getUser().phone).child("moodLog").child(date) != null) {
-                        toast = Toast.makeText(MoodLogActivity.this, "Today's mood has been selected already!", Toast.LENGTH_LONG);
-                        toast.show();
-                    } else {
-
-                        String mood = "";
-                        String moodDetails = moodLogFeelings.getEditText().getText().toString().trim();
-                        for (int i = 0; i < relativeValue.length; i++) {
-                            if (relativeValue[0])
-                                mood = "Very good";
-                            else if (relativeValue[1])
-                                mood = "Good";
-                            else if (relativeValue[2])
-                                mood = "Neutral";
-                            else if (relativeValue[3])
-                                mood = "bad";
-                            else if (relativeValue[4])
-                                mood = "Awful";
+                    final String phone = LoginActivity.getUser().getPhone();
+                    FirebaseDatabase.getInstance().getReference("user").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            Toast toast1;
+                            if (snapshot.child(phone).child("moodLog").child(date).exists()) {
+                                FirebaseDatabase.getInstance().getReference("user").child(phone).child("moodLog").child(date);
+                                toast1 = Toast.makeText(MoodLogActivity.this, "Today's mood has been selected already!", Toast.LENGTH_LONG);
+                                toast1.show();
+                            }
+                            else {
+                                String mood = "";
+                                String moodDetails = moodLogFeelings.getEditText().getText().toString().trim();
+                                for (int i = 0; i < relativeValue.length; i++) {
+                                if (relativeValue[0])
+                                    mood = "Very good";
+                                else if (relativeValue[1])
+                                    mood = "Good";
+                                else if (relativeValue[2])
+                                    mood = "Neutral";
+                                else if (relativeValue[3])
+                                    mood = "bad";
+                                else if (relativeValue[4])
+                                    mood = "Awful";
+                                }
+                                MoodLog m = new MoodLog(mood, moodDetails);
+                                reference.child(LoginActivity.getUser().phone).child("moodLog").child(date).setValue(m);  //Get the array
+                                toast1 = Toast.makeText(MoodLogActivity.this, "Successful", Toast.LENGTH_LONG);
+                                toast1.show();
+                            }
                         }
-                        MoodLog m = new MoodLog(mood, moodDetails);
-                        reference.child(LoginActivity.getUser().phone).child("moodLog").child(date).setValue(m);  //Get the array
-                        toast = Toast.makeText(MoodLogActivity.this, "Successful", Toast.LENGTH_LONG);
-                        toast.show();
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         });
