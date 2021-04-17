@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Therapy Buddy</string>
+    <string name="welcome_please_choose_an_activity">Welcome, please choose an activity</string>
+    <string name="mood_log">Mood Log</string>
+    <string name="worksheets">Worksheets</string>
+    <string name="statistics">Statistics</string>
+    <string name="contact">Contact</string>
 </resources>
