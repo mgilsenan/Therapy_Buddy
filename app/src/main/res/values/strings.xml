@@ -5,4 +5,10 @@
     <string name="worksheets">Worksheets</string>
     <string name="statistics">Statistics</string>
     <string name="contact">Contact</string>
+    <string name="_2">2</string>
+    <string name="which_worksheet_would_you_like_to_complete">Select a Worksheet</string>
+    <string name="thought_record">Thought Record</string>
+    <string name="graded_exposure">Graded Exposure</string>
+    <string name="fear_diary">Fear Diary</string>
+    <string name="situational_analysis">Situational Analysis</string>
 </resources>

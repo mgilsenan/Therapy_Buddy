@@ -110,6 +110,9 @@ public class HomeActivity extends AppCompatActivity {
     public void btn_moodleLog(View view) {
         startActivity(new Intent(getApplicationContext(),MoodLogActivity.class));
     }
+    public void worksheetsButtonAction(View view){
+        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
+    }
     // Action for clicking the worksheets cardview
     protected void worksheetsCardViewAction(){
         worksheetsCardView.setOnClickListener(new View.OnClickListener() {
@@ -122,8 +125,5 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    public void worksheetsButtonAction(View view){
-        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
     }
 }
