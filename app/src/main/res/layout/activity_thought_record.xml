@@ -49,6 +49,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/upsetting_event_description_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
@@ -300,6 +301,52 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.gridlayout.widget.GridLayout>
+
+            <TextView
+                android:id="@+id/auatomatic_thoughts_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="12dp"
+                android:text="Step Three: Automatic Thoughts"
+                android:textColor="#5D7047"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/automatic_thoughts_label_helper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="12dp"
+                android:text="Write the negative thoughts that come to mind automatically. How much do you believe in them?"
+                android:textColor="#5D7047"
+                android:textSize="12dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/automatic_thoughts_description"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:hint="Your automatic thoughts"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/automatic_thoughts_description_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:inputType="textMultiLine"
+                    android:transitionName="phone_number_trans" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>
