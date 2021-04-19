@@ -15,4 +15,28 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="distortion_checklist">
+        1. All-or-nothing thinking: You look at things in absolute, black-and-white categories.\n
+        2. Overgeneralization: You view a negative event as a never-ending pattern of defeat.\n
+        3. Mental filter: You dwell on the negatives and ignore the positives.\n
+        4. Discounting the positives: You insist that your accomplishments or positive qualities don\'t count.\n
+        5. Jumping to conclusions: You assume that people are reacting negatively to you when there\'s no evidence, or you arbitrarily predict that things will turn out badly.\n
+        6. Magnification/minimization: You blow things way out of proportion, or you shrink their importance.\n
+        7. Emotional reasoning: You feel some way, so you think that it\'s the truth automatically.\n
+        8. "Should" statements: You criticize yourself or others with "should"s or "shouldn\'t"s.\n
+        9. Labeling: You turn mistakes into personal shortcomings.\n
+        10. Personalizing the blame: You think something is your fault when it isn\'t, or you blame someone for something you\'re responsible for.
+    </string>
+    <string name="distortion_checklist_li">
+        <li>    All-or-nothing thinking: You look at things in absolute, black-and-white categories.</li>
+        <li>    Overgeneralization: You view a negative event as a never-ending pattern of defeat.</li>
+        <li>    Mental filter: You dwell on the negatives and ignore the positives.</li>
+        <li>    Discounting the positives: You insist that your accomplishments or positive qualities don't count.</li>
+        <li>    Jumping to conclusions: You assume that people are reacting negatively to you when there's no evidence, or you arbitrarily predict that things will turn out badly.</li>
+        <li>    Magnification/minimization: You blow things way out of proportion, or you shrink their importance.\n</li>
+        <li>    Emotional reasoning: You feel some way, so you think that it's the truth automatically.</li>
+        <li>    "Should" statements: You criticize yourself or others with "should"s or "shouldn't"s.</li>
+        <li>    Labeling: You turn mistakes into personal shortcomings.</li>
+        <li>    Personalizing the blame: You think something is your fault when it isn't, or you blame someone for something you're responsible for.</li>
+    </string>
 </resources>

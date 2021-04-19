@@ -116,6 +116,7 @@
                     app:layout_rowWeight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/negative_feelings_rating_1_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -151,6 +152,7 @@
                     app:layout_rowWeight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/negative_feelings_rating_2_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -186,6 +188,7 @@
                     app:layout_rowWeight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/negative_feelings_rating_3_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -221,6 +224,7 @@
                     app:layout_rowWeight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/negative_feelings_rating_4_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -256,6 +260,7 @@
                     app:layout_rowWeight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/negative_feelings_rating_5_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -291,6 +296,7 @@
                     app:layout_rowWeight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/negative_feelings_rating_6_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -347,6 +353,113 @@
                     android:transitionName="phone_number_trans" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/distortions_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="12dp"
+                android:text="Step Four: Distortions"
+                android:textColor="#5D7047"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/distortions_label_helper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="12dp"
+                android:text="Identify the cognitive distortions in your automatic thoughts."
+                android:textColor="#5D7047"
+                android:textSize="12dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/moodLogCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="#5D7047"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                app:layout_gravity="fill">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:id="@+id/distortions_checklist_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:gravity="center_horizontal"
+                            android:text="CHECKLIST OF COGNITIVE DISTORTIONS"
+                            android:textAlignment="gravity"
+                            android:textColor="#E0E0E0"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/distortions_checklist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:layout_marginRight="12dp"
+                            android:text=""
+                            android:textColor="#E0E0E0"
+                            android:textSize="12sp"
+                            tools:text="@string/distortion_checklist_li" />
+                    </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/distortions_description"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:hint="Your distortions"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/distortions_description_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:inputType="textMultiLine"
+                    android:transitionName="phone_number_trans" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:text="Distortion 1"/>
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:text="Distortion 1"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
