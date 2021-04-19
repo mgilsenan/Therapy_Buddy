@@ -22,6 +22,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,16 +31,17 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
+    protected void setUp(){
+        //moodLogSubmitBtn = findViewById(R.id.moodLogSubmitBtn);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thought_record);
         setUp();
-    }
 
-    protected void setUp(){
-        //moodLogSubmitBtn = findViewById(R.id.moodLogSubmitBtn);
+
     }
 
 }
