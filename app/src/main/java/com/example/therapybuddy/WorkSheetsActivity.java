@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ public class WorkSheetsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setUp();
         setContentView(R.layout.activity_work_sheets);
     }
 
@@ -37,6 +39,10 @@ public class WorkSheetsActivity extends AppCompatActivity {
 
     // UI
     CardView thoughtRecordCardView;
+    CardView gradedExposureCardView;
+    CardView fearDiaryCardView;
+    CardView situationalAnalysisCardView;
+    TextView hotStreakCounter;
 
     // firebase
     DatabaseReference reference;
@@ -44,14 +50,16 @@ public class WorkSheetsActivity extends AppCompatActivity {
 
     protected void setUp(){
         //Hooks
-        //thoughtRecordCardView = findViewById(R.id.thoughtRecordCardView);
-
+        thoughtRecordCardView = findViewById(R.id.thoughtRecordCardView);
+        gradedExposureCardView = findViewById(R.id.gradedExposureCardView);
+        fearDiaryCardView = findViewById(R.id.fearDiaryCardView);
+        situationalAnalysisCardView = findViewById(R.id.fearDiaryCardView);
+        hotStreakCounter = findViewById(R.id.hotStreakCounter);
         user = new User();
         fAuth = FirebaseAuth.getInstance();
     }
 
-
-    public void worksheetsButtonAction(View view){
-        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
+    public void thoughtRecordButtonAction(View view){
+        startActivity(new Intent(getApplicationContext(),ThoughtRecordActivity.class));
     }
 }

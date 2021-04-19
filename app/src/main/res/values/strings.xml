@@ -11,4 +11,8 @@
     <string name="graded_exposure">Graded Exposure</string>
     <string name="fear_diary">Fear Diary</string>
     <string name="situational_analysis">Situational Analysis</string>
+    <string name="title_activity_thought_record">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
