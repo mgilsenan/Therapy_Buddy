@@ -1,16 +1,17 @@
 package com.example.therapybuddy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.mikephil.charting.utils.Utils;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,13 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.List;
 
 public class MoodLogActivity extends AppCompatActivity {
 
@@ -48,6 +45,7 @@ public class MoodLogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mood_log);
         setUp();
         moodLogSubmitBtnAction();
+        Utils.init(this);
     }
 
     protected void setUp(){
@@ -99,19 +97,19 @@ public class MoodLogActivity extends AppCompatActivity {
                                     toast1.show();
                                 }
                                 else {
-                                    String mood = "";
+                                    int mood = 0;
                                     String moodDetails = moodLogFeelings.getEditText().getText().toString().trim();
                                     for (int i = 0; i < relativeValue.length; i++) {
                                         if (relativeValue[0])
-                                            mood = "Excited";
+                                            mood = 4;
                                         else if (relativeValue[1])
-                                            mood = "Happy";
+                                            mood = 3;
                                         else if (relativeValue[2])
-                                            mood = "Neutral";
+                                            mood = 2;
                                         else if (relativeValue[3])
-                                            mood = "Sad";
+                                            mood = 1;
                                         else if (relativeValue[4])
-                                            mood = "Awful";
+                                            mood = 0;
                                     }
                                     MoodLog m = new MoodLog(mood, moodDetails);
                                     reference.child(LoginActivity.getUser().phone).child("moodLog").child(date).setValue(m);  //Get the array
@@ -183,5 +181,9 @@ public class MoodLogActivity extends AppCompatActivity {
         }
         selected[0].setVisibility(View.VISIBLE);
         relativeValue[0] = true;
+    }
+
+    public void moodLogDisplay(View view) {
+        startActivity(new Intent(getApplicationContext(),MoodLogDisplayActivity.class));
     }
 }
