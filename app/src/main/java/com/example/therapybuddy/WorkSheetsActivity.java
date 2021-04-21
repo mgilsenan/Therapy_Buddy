@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class WorkSheetsActivity extends AppCompatActivity {
     CardView fearDiaryCardView;
     CardView situationalAnalysisCardView;
     TextView hotStreakCounter;
+
 
     // firebase
     DatabaseReference reference;

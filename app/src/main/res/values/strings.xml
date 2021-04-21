@@ -31,12 +31,31 @@
         <li>    All-or-nothing thinking: You look at things in absolute, black-and-white categories.</li>
         <li>    Overgeneralization: You view a negative event as a never-ending pattern of defeat.</li>
         <li>    Mental filter: You dwell on the negatives and ignore the positives.</li>
-        <li>    Discounting the positives: You insist that your accomplishments or positive qualities don't count.</li>
-        <li>    Jumping to conclusions: You assume that people are reacting negatively to you when there's no evidence, or you arbitrarily predict that things will turn out badly.</li>
+        <li>    Discounting the positives: You insist that your accomplishments or positive qualities don\'t count.</li>
+        <li>    Jumping to conclusions: You assume that people are reacting negatively to you when there\'s no evidence, or you arbitrarily predict that things will turn out badly.</li>
         <li>    Magnification/minimization: You blow things way out of proportion, or you shrink their importance.\n</li>
-        <li>    Emotional reasoning: You feel some way, so you think that it's the truth automatically.</li>
-        <li>    "Should" statements: You criticize yourself or others with "should"s or "shouldn't"s.</li>
+        <li>    Emotional reasoning: You feel some way, so you think that it\'s the truth automatically.</li>
+        <li>    "Should" statements: You criticize yourself or others with "should"s or "shouldn\'t"s.</li>
         <li>    Labeling: You turn mistakes into personal shortcomings.</li>
-        <li>    Personalizing the blame: You think something is your fault when it isn't, or you blame someone for something you're responsible for.</li>
+        <li>    Personalizing the blame: You think something is your fault when it isn\'t, or you blame someone for something you\'re responsible for.</li>
     </string>
+
+    <string-array name="negativeFeelingsArray">
+        <item>None</item>
+        <item>Angry</item>
+        <item>Sad</item>
+        <item>Lonely</item>
+        <item>Hopeless</item>
+        <item>Depressed</item>
+        <item>Annoyed</item>
+        <item>Scared</item>
+        <item>Disgusted</item>
+        <item>Traumatized</item>
+        <item>Stressed</item>
+        <item>Anxious</item>
+        <item>Tired</item>
+        <item>Melancholic</item>
+        <item>Remorseful</item>
+        <item>Resentful</item>
+    </string-array>
 </resources>
