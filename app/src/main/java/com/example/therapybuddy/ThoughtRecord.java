@@ -14,10 +14,13 @@ public class ThoughtRecord {
     //to use for debugging
     public ThoughtRecord(){
         upsettingEvent = "empty";
+        negativeFeelingsList = new LinkedList<Pair<String,Integer>>();
         negativeFeelingsList.add(new Pair<String,Integer>("empty",0));
         automaticThoughts = "empty";
+        distortions = new LinkedList<Boolean>();
         distortions.add(false);
         rationalResponses = "empty";
+        updatedFeelingsList = new LinkedList<Pair<String,Integer>>();
         updatedFeelingsList.add(new Pair<String,Integer>("empty",10));
         outcomeValue = 20;
     }

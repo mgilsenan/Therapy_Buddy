@@ -4,13 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,19 +21,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class ThoughtRecordActivity extends AppCompatActivity {
 
     FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    DatabaseReference databaseReference;
 
     Spinner negativeSpinnerWord1, negativeSpinnerWord2, negativeSpinnerWord3,
             negativeSpinnerWord4, negativeSpinnerWord5, negativeSpinnerWord6,
@@ -55,6 +49,8 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
     RadioButton outcome_radioButton_1, outcome_radioButton_2, outcome_radioButton_3, outcome_radioButton_4;
     RadioGroup outcome_radioGroup;
+    Button thoughtRecordSubmitBtn;
+    String databaseChild = "thoughtRecord";
 
     protected void setUp(){
         // Hooking the front-end assets to the back-end
@@ -110,6 +106,60 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         negativeSpinnerWord4.setAdapter(adapter);
         negativeSpinnerWord5.setAdapter(adapter);
         negativeSpinnerWord6.setAdapter(adapter);
+
+        //Getting the submit button
+        thoughtRecordSubmitBtn = findViewById(R.id.complete_worksheet_btn);
+    }
+
+    protected void thoughtRecrodSubmitBtnAction(){
+        thoughtRecordSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rootNode = FirebaseDatabase.getInstance();
+                databaseReference = rootNode.getReference("user");
+                if (validateInput()) {
+                    DateFormat d = new SimpleDateFormat("yyyy-MM-dd");
+                    Calendar cal = Calendar.getInstance();
+                    String date = d.format(cal.getTime());
+                    final String phone = LoginActivity.getUser().getPhone();
+                    FirebaseDatabase.getInstance().getReference("user").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            Toast toast1;
+                            if (snapshot.child(phone).child(databaseChild).child(date).exists()) {
+                                FirebaseDatabase.getInstance().getReference("user").child(phone).child(databaseChild).child(date);
+                                toast1 = Toast.makeText(ThoughtRecordActivity.this, "Today's thought record has been completed already!", Toast.LENGTH_LONG);
+                                toast1.show();
+                            }
+                            else {
+                                ThoughtRecord thoughtRecord = extractThoughtRecord();
+                                databaseReference.child(LoginActivity.getUser().phone).child(databaseChild).child(date).setValue(thoughtRecord);  //Get the array
+                                toast1 = Toast.makeText(ThoughtRecordActivity.this, "Successful", Toast.LENGTH_LONG);
+                                toast1.show();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    protected boolean validateInput(){
+        // description not empty, list of negative feelings not empty, updated list not empty,
+//        if(upsetting_event_description.getEditText().getText().toString().trim().isEmpty()){
+//            Toast msg = Toast.makeText(ThoughtRecordActivity.this, "You need to describe the event", Toast.LENGTH_LONG);
+//            msg.show();
+//        }
+        return true;
+    }
+
+    protected ThoughtRecord extractThoughtRecord(){
+        // extract data from the frontend fields
+        return new ThoughtRecord();
     }
 
     @Override
@@ -117,6 +167,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thought_record);
         setUp();
+        thoughtRecrodSubmitBtnAction();
     }
 
 }
