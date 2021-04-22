@@ -428,7 +428,7 @@
                             android:id="@+id/distortion1_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:checked="true"
+                            android:checked="false"
                             android:text=""
                             android:layout_marginBottom="-8dp"
                             android:layout_marginTop="-8dp"/>
@@ -484,7 +484,7 @@
                         android:id="@+id/distortion2_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -540,7 +540,7 @@
                         android:id="@+id/distortion3_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -596,7 +596,7 @@
                         android:id="@+id/distortion4_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -652,7 +652,7 @@
                         android:id="@+id/distortion5_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -708,7 +708,7 @@
                         android:id="@+id/distortion6_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -764,7 +764,7 @@
                         android:id="@+id/distortion7_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -820,7 +820,7 @@
                         android:id="@+id/distortion8_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -876,7 +876,7 @@
                         android:id="@+id/distortion9_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"/>
@@ -932,7 +932,7 @@
                         android:id="@+id/distortion10_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:checked="true"
+                        android:checked="false"
                         android:text=""
                         android:layout_marginBottom="-8dp"
                         android:layout_marginTop="-8dp"
