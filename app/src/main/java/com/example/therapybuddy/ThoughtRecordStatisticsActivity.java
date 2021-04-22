@@ -3,6 +3,7 @@ package com.example.therapybuddy;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.therapybuddy.dataClasses.ThoughtRecord;
@@ -31,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference;
+    Button generateRecordBtn;
     LineChart lineChart;
     LineDataSet lineDataSet = new LineDataSet(null , null);
     ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
@@ -44,6 +46,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
         setUp();
     }
     protected void setUp(){
+        generateRecordBtn = findViewById(R.id.generate_records_btn);
         lineChart = findViewById(R.id.lineChart);
         final String phone = LoginActivity.getUser().getPhone();
         databaseReference = FirebaseDatabase.getInstance().getReference("user").child(phone).child(databaseModule);
@@ -108,6 +111,9 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
             }
 
         });
+
+        // generating records
+        
     }
 
     private void showChart(ArrayList<Entry> dataVals) {
