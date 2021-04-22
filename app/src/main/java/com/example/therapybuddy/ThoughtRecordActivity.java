@@ -34,10 +34,9 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     List<TextInputLayout> negativeWordSpinnerValues = new LinkedList<>();
     List<Spinner> newNegativeWordSpinners = new LinkedList<>();
     List<TextInputLayout> newNegativeWordSpinnerValues = new LinkedList<>();
-    List<SwitchMaterial> distortionSwitches = new LinkedList<SwitchMaterial>();
+    List<SwitchMaterial> distortionSwitches = new LinkedList<>();
 
-    TextInputLayout upsetting_event_description,
-
+    TextInputLayout upsetting_event_description, automatic_thoughts_description,
     rational_responses_description;
 
     RadioButton outcome_radioButton_1, outcome_radioButton_2, outcome_radioButton_3, outcome_radioButton_4;
@@ -62,6 +61,10 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
     protected void setUp(){
         // Hooking the front-end assets to the back-end
+        upsetting_event_description = findViewById(R.id.upsetting_event_description);
+        automatic_thoughts_description = findViewById(R.id.automatic_thoughts_description);
+        rational_responses_description = findViewById(R.id.rational_responses_description);
+
         negativeWordSpinners.add((Spinner) findViewById(R.id.negative_feelings_word_1));
         negativeWordSpinners.add((Spinner) findViewById(R.id.negative_feelings_word_2));
         negativeWordSpinners.add((Spinner) findViewById(R.id.negative_feelings_word_3));
@@ -86,8 +89,6 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         newNegativeWordSpinnerValues.add(findViewById(R.id.new_negative_feelings_rating_4));
         newNegativeWordSpinnerValues.add(findViewById(R.id.new_negative_feelings_rating_5));
         newNegativeWordSpinnerValues.add(findViewById(R.id.new_negative_feelings_rating_6));
-        upsetting_event_description = findViewById(R.id.upsetting_event_description);
-        rational_responses_description = findViewById(R.id.rational_responses_description);
         distortionSwitches.add(findViewById(R.id.distortion1_switch));
         distortionSwitches.add(findViewById(R.id.distortion2_switch));
         distortionSwitches.add(findViewById(R.id.distortion3_switch));
@@ -158,23 +159,59 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     }
 
     protected boolean isInputValid(){
+        Toast msg;
         // description not empty, list of negative feelings not empty, updated list not empty, etc
         if(upsetting_event_description.getEditText().getText().toString().isEmpty()){
-            Toast msg = Toast.makeText(ThoughtRecordActivity.this, "You need to describe the event", Toast.LENGTH_LONG);
+            msg = Toast.makeText(ThoughtRecordActivity.this, "You need to describe the event", Toast.LENGTH_LONG);
             msg.show();
             return false;
         }
 
-        //negative spinners
+        //negative spinners (for both the original negative words and their reevaluation)
+        boolean isOriginalSpinnersNonEmpty = false;
+        boolean isNewSpinnersNonEmpty = false;
         for (int i=0; i < negativeWordSpinners.size(); i++){
-//            if ((!negativeWordSpinners.get(i).getSelectedItem().toString().equals("None")) && (true)){
-//
-//            }
-            System.out.println("spinner word: "+negativeWordSpinners.get(i).getSelectedItem().toString());
-            System.out.println("spinner word: "+negativeWordSpinnerValues.get(i).getEditText().toString());
+            if (!(negativeWordSpinners.get(i).getSelectedItem().toString().equals("None")) && !(negativeWordSpinnerValues.get(i).getEditText().getText().toString().isEmpty())){
+                isOriginalSpinnersNonEmpty = true;
+            }
+            if (!(newNegativeWordSpinners.get(i).getSelectedItem().toString().equals("None")) && !(newNegativeWordSpinnerValues.get(i).getEditText().getText().toString().isEmpty())){
+                isNewSpinnersNonEmpty = true;
+            }
+            if (!negativeWordSpinners.get(i).getSelectedItem().toString().equals(newNegativeWordSpinners.get(i).getSelectedItem().toString())){
+                //selected different emotions for the second set of spinners
+                // todo remove the burden on the user, make the app synchronise the spinners
+                msg = Toast.makeText(ThoughtRecordActivity.this, "You must re-evaluate the same emotions", Toast.LENGTH_LONG);
+                msg.show();
+                return false;
+            }
+
+        }
+        if (!isOriginalSpinnersNonEmpty){
+            msg = Toast.makeText(ThoughtRecordActivity.this, "You need to list and rate at least one negative emotion", Toast.LENGTH_LONG);
+            msg.show();
+            return false;
+        }
+        if (!isNewSpinnersNonEmpty){
+            msg = Toast.makeText(ThoughtRecordActivity.this, "You need to list and reevaluate at least one negative emotion", Toast.LENGTH_LONG);
+            msg.show();
+            return false;
+        }
+        if(automatic_thoughts_description.getEditText().getText().toString().isEmpty()){
+            msg = Toast.makeText(ThoughtRecordActivity.this, "You need to describe your automatic thoughts", Toast.LENGTH_LONG);
+            msg.show();
+            return false;
+        }
+        if(rational_responses_description.getEditText().getText().toString().isEmpty()){
+            msg = Toast.makeText(ThoughtRecordActivity.this, "You need to re-evaluate your thoughts", Toast.LENGTH_LONG);
+            msg.show();
+            return false;
         }
 
-
+        if(outcome_radioGroup.getCheckedRadioButtonId() == -1){
+            msg = Toast.makeText(ThoughtRecordActivity.this, "You must rate how you feel", Toast.LENGTH_LONG);
+            msg.show();
+            return false;
+        }
 
         return true;
     }
