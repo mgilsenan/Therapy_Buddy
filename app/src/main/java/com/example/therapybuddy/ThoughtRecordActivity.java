@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,13 +40,13 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     TextInputLayout upsetting_event_description, automatic_thoughts_description,
     rational_responses_description;
 
-    RadioButton outcome_radioButton_1, outcome_radioButton_2, outcome_radioButton_3, outcome_radioButton_4;
+
     RadioGroup outcome_radioGroup;
     Button thoughtRecordSubmitBtn;
     String databaseChild = "thoughtRecord";
 
     //TO KEEP IN CASE THE LISTS DON'T WORK FOR SOME REASON
-
+//    RadioButton outcome_radioButton_1, outcome_radioButton_2, outcome_radioButton_3, outcome_radioButton_4;
     //    Spinner negativeSpinnerWord1, negativeSpinnerWord2, negativeSpinnerWord3,
 //            negativeSpinnerWord4, negativeSpinnerWord5, negativeSpinnerWord6,
 //            newNegativeSpinnerWord1, newNegativeSpinnerWord2, newNegativeSpinnerWord3,
@@ -121,7 +122,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         thoughtRecordSubmitBtn = findViewById(R.id.complete_worksheet_btn);
     }
 
-    protected void thoughtRecrodSubmitBtnAction(){
+    protected void thoughtRecordSubmitBanAction(){
         thoughtRecordSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,6 +218,38 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     }
 
     protected ThoughtRecord extractThoughtRecord(){
+        // text fields
+        String event_description = upsetting_event_description.getEditText().getText().toString();
+        String automaticThoughts = automatic_thoughts_description.getEditText().getText().toString();
+        String rationalResponses = rational_responses_description.getEditText().getText().toString();
+
+        // getting the outcome value from radio group
+        int radioButtonID = outcome_radioGroup.getCheckedRadioButtonId();
+        View radioButton = outcome_radioGroup.findViewById(radioButtonID);
+        int outcomeValue = outcome_radioGroup.indexOfChild(radioButton);
+
+        // Getting emotions and their ratings
+        LinkedList<Pair<String,Integer>> negativeFeelingsList = new LinkedList<>();
+        LinkedList<Pair<String,Integer>> updatedFeelingsList = new LinkedList<>();
+        for (int i=0; i < negativeWordSpinners.size(); i++){
+            String emotion = negativeWordSpinners.get(i).getSelectedItem().toString();
+            String emotionUpdated = newNegativeWordSpinners.get(i).getSelectedItem().toString();
+
+            if (!emotion.isEmpty()) {
+                negativeFeelingsList.add(new Pair<String,Integer>(emotion,
+                        Integer.parseInt(negativeWordSpinnerValues.get(i).getEditText().getText().toString())));
+            }
+            if (!emotionUpdated.isEmpty()) {
+                negativeFeelingsList.add(new Pair<String,Integer>(emotionUpdated,
+                        Integer.parseInt(newNegativeWordSpinnerValues.get(i).getEditText().getText().toString())));
+            }
+        }
+
+        LinkedList<Boolean> distortions = new LinkedList<>();
+        for (int i=0; i < distortionSwitches.size(); i++){
+            distortions.add(distortionSwitches.get(i).isChecked());
+        }
+
         // extract data from the frontend fields
         return new ThoughtRecord();
     }
@@ -226,7 +259,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thought_record);
         setUp();
-        thoughtRecrodSubmitBtnAction();
+        thoughtRecordSubmitBanAction();
     }
 
 }
