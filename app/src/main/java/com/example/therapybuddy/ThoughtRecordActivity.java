@@ -8,7 +8,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,7 +43,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
     RadioGroup outcome_radioGroup;
     Button thoughtRecordSubmitBtn;
-    String databaseChild = "thoughtRecord";
+    String databaseModule = "thoughtRecord";
     String[] distortion_names = {"ALL-OR-NOTHING THINKING", "OVERGENERALIZATION", "MENTAL FILTER",
             "DISCOUNTING THE POSITIVES", "JUMPING TO CONCLUSIONS", "MAGNIFICATION / MINIMIZATION",
             "EMOTIONAL REASONING", "SHOULD STATEMENTS","LABELING", "PERSONALIZING THE BLAME"};
@@ -127,14 +126,14 @@ public class ThoughtRecordActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot snapshot) {
                             Toast toast1;
-                            if (snapshot.child(phone).child(databaseChild).child(date).exists()) {
-                                FirebaseDatabase.getInstance().getReference("user").child(phone).child(databaseChild).child(date);
+                            if (snapshot.child(phone).child(databaseModule).child(date).exists()) {
+                                FirebaseDatabase.getInstance().getReference("user").child(phone).child(databaseModule).child(date);
                                 toast1 = Toast.makeText(ThoughtRecordActivity.this, "Today's thought record has been completed already!", Toast.LENGTH_LONG);
                                 toast1.show();
                             }
                             else {
                                 ThoughtRecord thoughtRecord = extractThoughtRecord();
-                                databaseReference.child(LoginActivity.getUser().phone).child(databaseChild).child(date).setValue(thoughtRecord);  //Get the array
+                                databaseReference.child(LoginActivity.getUser().phone).child(databaseModule).child(date).setValue(thoughtRecord);  //Get the array
                                 toast1 = Toast.makeText(ThoughtRecordActivity.this, "Thought Record Completed Successfully!", Toast.LENGTH_LONG);
                                 toast1.show();
                             }

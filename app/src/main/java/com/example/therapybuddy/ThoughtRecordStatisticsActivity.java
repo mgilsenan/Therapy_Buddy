@@ -2,6 +2,7 @@ package com.example.therapybuddy;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -23,11 +24,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
 
-    DatabaseReference reference;
+    DatabaseReference databaseReference;
     LineChart lineChart;
     LineDataSet lineDataSet = new LineDataSet(null , null);
     ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
     LineData lineData;
+    String databaseModule = "thoughtRecord";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,12 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
     protected void setUp(){
         lineChart = findViewById(R.id.lineChart);
         final String phone = LoginActivity.getUser().getPhone();
-        reference = FirebaseDatabase.getInstance().getReference("user").child(phone).child("moodLog");
-        reference.addValueEventListener(new ValueEventListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("user").child(phone).child(databaseModule);
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //creating the graphs
                 ArrayList<Entry> dataVals = new ArrayList<Entry>();
                 if(dataSnapshot.hasChildren()){
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
@@ -61,6 +65,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting Post failed, log a message
+                Toast.makeText(ThoughtRecordStatisticsActivity.this, "Something went wrong while contacting the database!", Toast.LENGTH_LONG).show();
             }
 
         });
