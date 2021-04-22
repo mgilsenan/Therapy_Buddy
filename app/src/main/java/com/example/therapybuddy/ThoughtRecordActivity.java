@@ -165,6 +165,15 @@ public class ThoughtRecordActivity extends AppCompatActivity {
             return false;
         }
 
+        //negative spinners
+        for (int i=0; i < negativeWordSpinners.size(); i++){
+//            if ((!negativeWordSpinners.get(i).getSelectedItem().toString().equals("None")) && (true)){
+//
+//            }
+            System.out.println("spinner word: "+negativeWordSpinners.get(i).getSelectedItem().toString());
+            System.out.println("spinner word: "+negativeWordSpinnerValues.get(i).getEditText().toString());
+        }
+
 
 
         return true;
