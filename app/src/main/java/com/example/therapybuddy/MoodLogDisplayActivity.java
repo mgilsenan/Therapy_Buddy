@@ -1,10 +1,13 @@
 package com.example.therapybuddy;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -35,20 +38,15 @@ public class MoodLogDisplayActivity extends AppCompatActivity {
     protected void setUp(){
         lineChart = findViewById(R.id.lineChart);
         final String phone = LoginActivity.getUser().getPhone();
-        reference = FirebaseDatabase.getInstance().getReference("user").child(phone);
+        reference = FirebaseDatabase.getInstance().getReference("user").child(phone).child("moodLog");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                String value = dataSnapshot.child("moodLog").getValue().toString();
-
                 ArrayList<Entry> dataVals = new ArrayList<Entry>();
                 if(dataSnapshot.hasChildren()){
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
                         MoodLog moodLog = myDataSnapshot.getValue(MoodLog.class);
                         String[] dataArray = myDataSnapshot.getKey().split("-");
-                        System.out.println(myDataSnapshot.getKey() + " " + moodLog.getMood() );
                         dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
                     }
                     showChart(dataVals);
@@ -58,7 +56,6 @@ public class MoodLogDisplayActivity extends AppCompatActivity {
                     lineChart.clear();
                     lineChart.invalidate();
                 }
-                System.out.println(dataSnapshot.child("moodLog").getValue().toString());
             }
 
             @Override
@@ -70,13 +67,40 @@ public class MoodLogDisplayActivity extends AppCompatActivity {
     }
 
     private void showChart(ArrayList<Entry> dataVals) {
+        lineChart.setTouchEnabled(true);
+        lineChart.setPinchZoom(true);
+        lineChart.setDragEnabled(true);
+        lineChart.setScaleEnabled(true);
+
+        lineChart.getDescription().setEnabled(true);
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChart.getXAxis().setDrawGridLines(false);
+        //Displaying mood details
+        //lineChart.setOnChartValueSelectedListener(this);
+
         lineDataSet.setValues(dataVals);
+        lineDataSet.setColor(Color.rgb(67, 91, 153));
+        lineDataSet.setCircleColor(Color.rgb(67, 91, 153));
         lineDataSet.setLabel("Mood");
+        lineDataSet.setCircleRadius(5f);
+        lineDataSet.setDrawCircles(true);
+
         iLineDataSets.clear();
         iLineDataSets.add(lineDataSet);
         lineData = new LineData(iLineDataSets);
         lineChart.clear();
         lineChart.setData(lineData);
+
+        Legend l = lineChart.getLegend();
+        // modify the legend ...
+        l.setForm(Legend.LegendForm.LINE);
+        l.setTextSize(15f);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(false);
+
+
         lineChart.invalidate();
     }
 }

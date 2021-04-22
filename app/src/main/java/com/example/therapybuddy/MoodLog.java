@@ -3,11 +3,9 @@ package com.example.therapybuddy;
 public class MoodLog {
     int mood;
     String moodDetails;
-    /*
     public MoodLog(){
 
     }
-     */
     public MoodLog(int mood, String moodDetails) {
         this.mood = mood;
         this.moodDetails = moodDetails;
