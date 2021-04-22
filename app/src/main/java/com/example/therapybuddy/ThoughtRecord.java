@@ -6,7 +6,7 @@ public class ThoughtRecord {
     private String upsettingEvent;
     private LinkedList<Pair<String,Integer>> negativeFeelingsList;
     private String automaticThoughts;
-    private LinkedList<Boolean> distortions;
+    private LinkedList<String> distortions;
     private String rationalResponses;
     private LinkedList<Pair<String,Integer>> updatedFeelingsList;
     private int outcomeValue;
@@ -17,8 +17,8 @@ public class ThoughtRecord {
         negativeFeelingsList = new LinkedList<Pair<String,Integer>>();
         negativeFeelingsList.add(new Pair<String,Integer>("empty",0));
         automaticThoughts = "empty";
-        distortions = new LinkedList<Boolean>();
-        distortions.add(false);
+        distortions = new LinkedList<String>();
+        distortions.add("distortion");
         rationalResponses = "empty";
         updatedFeelingsList = new LinkedList<Pair<String,Integer>>();
         updatedFeelingsList.add(new Pair<String,Integer>("empty",10));
@@ -26,13 +26,15 @@ public class ThoughtRecord {
     }
 
 
-    public ThoughtRecord(String upsettingEventD, LinkedList<Pair<String,Integer>> negativeFeelingsListD, String automaticThoughtsD,
-                         LinkedList<Boolean> distortionsD, String rationalResponsesD, LinkedList<Pair<String,Integer>> updatedFeelingsListD, int outcomeValueD){
-        upsettingEvent = upsettingEventD;
-        negativeFeelingsList = negativeFeelingsListD;
-        distortions = distortionsD;
-        automaticThoughts = automaticThoughtsD;
-        outcomeValue = outcomeValueD;
+    public ThoughtRecord(String upsettingEvent, LinkedList<Pair<String,Integer>> negativeFeelingsList, String automaticThoughts,
+                         LinkedList<String> distortions, String rationalResponses, LinkedList<Pair<String,Integer>> updatedFeelingsList, int outcomeValue){
+        this.upsettingEvent = upsettingEvent;
+        this.negativeFeelingsList = negativeFeelingsList;
+        this.distortions = distortions;
+        this.automaticThoughts = automaticThoughts;
+        this.outcomeValue = outcomeValue;
+        this.rationalResponses = rationalResponses;
+        this.updatedFeelingsList = updatedFeelingsList;
     }
 
     public String getUpsettingEvent() {
@@ -51,11 +53,11 @@ public class ThoughtRecord {
         this.negativeFeelingsList = negativeFeelingsList;
     }
 
-    public LinkedList<Boolean> getDistortions() {
+    public LinkedList<String> getDistortions() {
         return distortions;
     }
 
-    public void setDistortions(LinkedList<Boolean> distortions) {
+    public void setDistortions(LinkedList<String> distortions) {
         this.distortions = distortions;
     }
 

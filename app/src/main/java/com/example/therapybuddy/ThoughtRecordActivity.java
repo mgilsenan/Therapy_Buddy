@@ -44,6 +44,9 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     RadioGroup outcome_radioGroup;
     Button thoughtRecordSubmitBtn;
     String databaseChild = "thoughtRecord";
+    String[] distortion_names = {"ALL-OR-NOTHING THINKING", "OVERGENERALIZATION", "MENTAL FILTER",
+            "DISCOUNTING THE POSITIVES", "JUMPING TO CONCLUSIONS", "MAGNIFICATION / MINIMIZATION",
+            "EMOTIONAL REASONING", "SHOULD STATEMENTS","LABELING", "PERSONALIZING THE BLAME"};
 
     //TO KEEP IN CASE THE LISTS DON'T WORK FOR SOME REASON
 //    RadioButton outcome_radioButton_1, outcome_radioButton_2, outcome_radioButton_3, outcome_radioButton_4;
@@ -145,7 +148,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
                             else {
                                 ThoughtRecord thoughtRecord = extractThoughtRecord();
                                 databaseReference.child(LoginActivity.getUser().phone).child(databaseChild).child(date).setValue(thoughtRecord);  //Get the array
-                                toast1 = Toast.makeText(ThoughtRecordActivity.this, "Successful", Toast.LENGTH_LONG);
+                                toast1 = Toast.makeText(ThoughtRecordActivity.this, "Thought Record Completed Successfully!", Toast.LENGTH_LONG);
                                 toast1.show();
                             }
                         }
@@ -235,23 +238,27 @@ public class ThoughtRecordActivity extends AppCompatActivity {
             String emotion = negativeWordSpinners.get(i).getSelectedItem().toString();
             String emotionUpdated = newNegativeWordSpinners.get(i).getSelectedItem().toString();
 
-            if (!emotion.isEmpty()) {
+            if (!emotion.equals("None")) {
+                String test = negativeWordSpinnerValues.get(i).getEditText().getText().toString();
                 negativeFeelingsList.add(new Pair<String,Integer>(emotion,
                         Integer.parseInt(negativeWordSpinnerValues.get(i).getEditText().getText().toString())));
             }
-            if (!emotionUpdated.isEmpty()) {
-                negativeFeelingsList.add(new Pair<String,Integer>(emotionUpdated,
+            if (!emotionUpdated.equals("None")) {
+                updatedFeelingsList.add(new Pair<String,Integer>(emotionUpdated,
                         Integer.parseInt(newNegativeWordSpinnerValues.get(i).getEditText().getText().toString())));
             }
         }
 
-        LinkedList<Boolean> distortions = new LinkedList<>();
+        LinkedList<String> distortions = new LinkedList<>();
         for (int i=0; i < distortionSwitches.size(); i++){
-            distortions.add(distortionSwitches.get(i).isChecked());
+            if (distortionSwitches.get(i).isChecked()){
+                distortions.add(distortion_names[i]);
+            }
         }
 
         // extract data from the frontend fields
-        return new ThoughtRecord();
+        return new ThoughtRecord(event_description, negativeFeelingsList, automaticThoughts,
+                distortions, rationalResponses, updatedFeelingsList, outcomeValue);
     }
 
     @Override
