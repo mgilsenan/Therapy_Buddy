@@ -53,18 +53,6 @@ public class ThoughtRecord {
         this.negativeFeelingsList = negativeFeelingsList;
     }
 
-    public LinkedList<String> getDistortions() {
-        return distortions;
-    }
-
-    public void setDistortions(LinkedList<String> distortions) {
-        this.distortions = distortions;
-    }
-
-    public int getOutcomeValue() {
-        return outcomeValue;
-    }
-
     public String getAutomaticThoughts() {
         return automaticThoughts;
     }
@@ -73,7 +61,36 @@ public class ThoughtRecord {
         this.automaticThoughts = automaticThoughts;
     }
 
+    public LinkedList<String> getDistortions() {
+        return distortions;
+    }
+
+    public void setDistortions(LinkedList<String> distortions) {
+        this.distortions = distortions;
+    }
+
+    public String getRationalResponses() {
+        return rationalResponses;
+    }
+
+    public void setRationalResponses(String rationalResponses) {
+        this.rationalResponses = rationalResponses;
+    }
+
+    public LinkedList<Pair<String, Integer>> getUpdatedFeelingsList() {
+        return updatedFeelingsList;
+    }
+
+    public void setUpdatedFeelingsList(LinkedList<Pair<String, Integer>> updatedFeelingsList) {
+        this.updatedFeelingsList = updatedFeelingsList;
+    }
+
+    public int getOutcomeValue() {
+        return outcomeValue;
+    }
+
     public void setOutcomeValue(int outcomeValue) {
         this.outcomeValue = outcomeValue;
     }
+
 }

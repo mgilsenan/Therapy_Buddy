@@ -28,6 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ThoughtRecordActivity extends AppCompatActivity {
+    // todo change best for great in the frontend, send the word "good,great,etc" instead of a number
 
     FirebaseDatabase rootNode;
     DatabaseReference databaseReference;
@@ -48,20 +49,6 @@ public class ThoughtRecordActivity extends AppCompatActivity {
             "DISCOUNTING THE POSITIVES", "JUMPING TO CONCLUSIONS", "MAGNIFICATION / MINIMIZATION",
             "EMOTIONAL REASONING", "SHOULD STATEMENTS","LABELING", "PERSONALIZING THE BLAME"};
 
-    //TO KEEP IN CASE THE LISTS DON'T WORK FOR SOME REASON
-//    RadioButton outcome_radioButton_1, outcome_radioButton_2, outcome_radioButton_3, outcome_radioButton_4;
-    //    Spinner negativeSpinnerWord1, negativeSpinnerWord2, negativeSpinnerWord3,
-//            negativeSpinnerWord4, negativeSpinnerWord5, negativeSpinnerWord6,
-//            newNegativeSpinnerWord1, newNegativeSpinnerWord2, newNegativeSpinnerWord3,
-//            newNegativeSpinnerWord4, newNegativeSpinnerWord5, newNegativeSpinnerWord6;
-//    negativeSpinnerValue1, negativeSpinnerValue2, negativeSpinnerValue3,
-//    negativeSpinnerValue4, negativeSpinnerValue5, negativeSpinnerValue6,
-//    newNegativeSpinnerValue1, newNegativeSpinnerValue2, newNegativeSpinnerValue3,
-//    newNegativeSpinnerValue4, newNegativeSpinnerValue5, newNegativeSpinnerValue6,
-    //    SwitchMaterial distortion1_switch, distortion2_switch, distortion3_switch,
-//            distortion4_switch, distortion5_switch, distortion6_switch,
-//            distortion7_switch, distortion8_switch, distortion9_switch,
-//            distortion10_switch;
 
     protected void setUp(){
         // Hooking the front-end assets to the back-end
