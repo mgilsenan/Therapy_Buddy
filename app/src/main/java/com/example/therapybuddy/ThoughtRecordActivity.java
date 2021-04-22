@@ -12,6 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.therapybuddy.dataClasses.EmotionRatingPair;
+import com.example.therapybuddy.dataClasses.ThoughtRecord;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -218,19 +220,19 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         int outcomeValue = outcome_radioGroup.indexOfChild(radioButton);
 
         // Getting emotions and their ratings
-        LinkedList<Pair<String,Integer>> negativeFeelingsList = new LinkedList<>();
-        LinkedList<Pair<String,Integer>> updatedFeelingsList = new LinkedList<>();
+        LinkedList<EmotionRatingPair> negativeFeelingsList = new LinkedList<>();
+        LinkedList<EmotionRatingPair> updatedFeelingsList = new LinkedList<>();
         for (int i=0; i < negativeWordSpinners.size(); i++){
             String emotion = negativeWordSpinners.get(i).getSelectedItem().toString();
             String emotionUpdated = newNegativeWordSpinners.get(i).getSelectedItem().toString();
 
             if (!emotion.equals("None")) {
                 String test = negativeWordSpinnerValues.get(i).getEditText().getText().toString();
-                negativeFeelingsList.add(new Pair<String,Integer>(emotion,
+                negativeFeelingsList.add(new EmotionRatingPair(emotion,
                         Integer.parseInt(negativeWordSpinnerValues.get(i).getEditText().getText().toString())));
             }
             if (!emotionUpdated.equals("None")) {
-                updatedFeelingsList.add(new Pair<String,Integer>(emotionUpdated,
+                updatedFeelingsList.add(new EmotionRatingPair(emotionUpdated,
                         Integer.parseInt(newNegativeWordSpinnerValues.get(i).getEditText().getText().toString())));
             }
         }

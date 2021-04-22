@@ -2,8 +2,10 @@ package com.example.therapybuddy;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Pair;
 import android.widget.Toast;
 
+import com.example.therapybuddy.dataClasses.ThoughtRecord;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -17,7 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,14 +51,47 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //creating the graphs
-                ArrayList<Entry> dataVals = new ArrayList<Entry>();
+                //Getting data from the db
+                ArrayList<Pair<String, ThoughtRecord>> records = new ArrayList<>();
+                ArrayList<Entry> dataVals = new ArrayList<>();
                 if(dataSnapshot.hasChildren()){
+                    // get all records
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
-                        MoodLog moodLog = myDataSnapshot.getValue(MoodLog.class);
-                        String[] dataArray = myDataSnapshot.getKey().split("-");
-                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
+//                        ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
+                        records.add(new Pair<>(myDataSnapshot.getKey(),myDataSnapshot.getValue(ThoughtRecord.class)));
+//                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
                     }
+                    // computing analytics data
+                    // total entries
+                    int total_entries = records.size();
+
+                    // Biggest streak
+                    int biggest_streak = 0;
+                    int streak = 0;
+                    for (int i = 0; i<records.size()-1; i++){
+                        //todo properly compare dates (I only check days)
+                        Date date1 = null;
+                        Date date2 = null;
+                        try {
+                            date1= new SimpleDateFormat("yyyy/MM/dd").parse(records.get(i).first);
+                            date2= new SimpleDateFormat("yyyy/MM/dd").parse(records.get(i+1).first);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        long diffInMillies = Math.abs(date2.getTime() - date1.getTime());
+                        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+                        if (diff == 1){
+                            streak++;
+                            if (streak > biggest_streak){
+                                biggest_streak = streak;
+                            }
+                        } else {
+                            streak = 0;
+                        }
+                    }
+
+
                     showChart(dataVals);
 
                 }

@@ -1,33 +1,33 @@
-package com.example.therapybuddy;
+package com.example.therapybuddy.dataClasses;
 
 import android.util.Pair;
 import java.util.LinkedList;
 public class ThoughtRecord {
     private String upsettingEvent;
-    private LinkedList<Pair<String,Integer>> negativeFeelingsList;
+    private LinkedList<EmotionRatingPair> negativeFeelingsList;
     private String automaticThoughts;
     private LinkedList<String> distortions;
     private String rationalResponses;
-    private LinkedList<Pair<String,Integer>> updatedFeelingsList;
+    private LinkedList<EmotionRatingPair> updatedFeelingsList;
     private int outcomeValue;
 
     //to use for debugging
     public ThoughtRecord(){
         upsettingEvent = "empty";
-        negativeFeelingsList = new LinkedList<Pair<String,Integer>>();
-        negativeFeelingsList.add(new Pair<String,Integer>("empty",0));
+        negativeFeelingsList = new LinkedList<EmotionRatingPair>();
+        negativeFeelingsList.add(new EmotionRatingPair("empty",0));
         automaticThoughts = "empty";
         distortions = new LinkedList<String>();
         distortions.add("distortion");
         rationalResponses = "empty";
-        updatedFeelingsList = new LinkedList<Pair<String,Integer>>();
-        updatedFeelingsList.add(new Pair<String,Integer>("empty",10));
+        updatedFeelingsList = new LinkedList<EmotionRatingPair>();
+        updatedFeelingsList.add(new EmotionRatingPair("empty",10));
         outcomeValue = 20;
     }
 
 
-    public ThoughtRecord(String upsettingEvent, LinkedList<Pair<String,Integer>> negativeFeelingsList, String automaticThoughts,
-                         LinkedList<String> distortions, String rationalResponses, LinkedList<Pair<String,Integer>> updatedFeelingsList, int outcomeValue){
+    public ThoughtRecord(String upsettingEvent, LinkedList<EmotionRatingPair> negativeFeelingsList, String automaticThoughts,
+                         LinkedList<String> distortions, String rationalResponses, LinkedList<EmotionRatingPair> updatedFeelingsList, int outcomeValue){
         this.upsettingEvent = upsettingEvent;
         this.negativeFeelingsList = negativeFeelingsList;
         this.distortions = distortions;
@@ -45,11 +45,11 @@ public class ThoughtRecord {
         this.upsettingEvent = upsettingEvent;
     }
 
-    public LinkedList<Pair<String, Integer>> getNegativeFeelingsList() {
+    public LinkedList<EmotionRatingPair> getNegativeFeelingsList() {
         return negativeFeelingsList;
     }
 
-    public void setNegativeFeelingsList(LinkedList<Pair<String, Integer>> negativeFeelingsList) {
+    public void setNegativeFeelingsList(LinkedList<EmotionRatingPair> negativeFeelingsList) {
         this.negativeFeelingsList = negativeFeelingsList;
     }
 
@@ -77,11 +77,11 @@ public class ThoughtRecord {
         this.rationalResponses = rationalResponses;
     }
 
-    public LinkedList<Pair<String, Integer>> getUpdatedFeelingsList() {
+    public LinkedList<EmotionRatingPair> getUpdatedFeelingsList() {
         return updatedFeelingsList;
     }
 
-    public void setUpdatedFeelingsList(LinkedList<Pair<String, Integer>> updatedFeelingsList) {
+    public void setUpdatedFeelingsList(LinkedList<EmotionRatingPair> updatedFeelingsList) {
         this.updatedFeelingsList = updatedFeelingsList;
     }
 
@@ -92,5 +92,4 @@ public class ThoughtRecord {
     public void setOutcomeValue(int outcomeValue) {
         this.outcomeValue = outcomeValue;
     }
-
 }
