@@ -1,28 +1,16 @@
 package com.example.therapybuddy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,9 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomeActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
-    private static String TAG = "HomeActivity";
+public class StatisticsActivity extends AppCompatActivity {
+
+    private static String TAG = "StatisticsActivity";
 
     // local user
     public static User user ;
@@ -58,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_statistics);
     }
 
     @Override
@@ -88,11 +80,11 @@ public class HomeActivity extends AppCompatActivity {
 
                             SharedPreferences pref = getSharedPreferences(LoginActivity.myPreference, Context.MODE_PRIVATE);
 
-                            intent[0] = new Intent(HomeActivity.this, LoginActivity.class);
+                            intent[0] = new Intent(StatisticsActivity.this, LoginActivity.class);
                             startActivity(intent[0]);
                             finish();
                         }else{
-                            Toast.makeText(HomeActivity.
+                            Toast.makeText(StatisticsActivity.
                                             this, "Error has occured",
                                     Toast.LENGTH_LONG).show();
                         }
@@ -110,21 +102,17 @@ public class HomeActivity extends AppCompatActivity {
     public void btn_moodleLog(View view) {
         startActivity(new Intent(getApplicationContext(),MoodLogActivity.class));
     }
-    public void worksheetsButtonAction(View view){
-        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
-    }
-
     public void statisticsButtonAction(View view){
-        startActivity(new Intent(getApplicationContext(),StatisticsActivity.class));
+        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
     }
     // Action for clicking the worksheets cardview
     protected void worksheetsCardViewAction(){
         worksheetsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (HomeActivity.this, WorkSheetsActivity.class);
+                Intent intent = new Intent (StatisticsActivity.this, WorkSheetsActivity.class);
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(HomeActivity.this);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StatisticsActivity.this);
                     startActivity(intent);
                 }
             }
