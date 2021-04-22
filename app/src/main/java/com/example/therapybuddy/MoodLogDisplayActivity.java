@@ -67,8 +67,8 @@ public class MoodLogDisplayActivity extends AppCompatActivity {
     }
 
     private void showChart(ArrayList<Entry> dataVals) {
-        lineChart.setTouchEnabled(true);
-        lineChart.setPinchZoom(true);
+        lineChart.setTouchEnabled(false);
+        lineChart.setPinchZoom(false);
         lineChart.setDragEnabled(true);
         lineChart.setScaleEnabled(true);
 
