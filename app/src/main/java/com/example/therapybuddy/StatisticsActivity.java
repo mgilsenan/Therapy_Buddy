@@ -1,28 +1,24 @@
 package com.example.therapybuddy;
 
-import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 public class StatisticsActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setUp();
+        setContentView(R.layout.activity_statistics);
+    }
 
     private static String TAG = "StatisticsActivity";
 
@@ -30,7 +26,12 @@ public class StatisticsActivity extends AppCompatActivity {
     public static User user ;
 
     // UI
-    CardView moodLogCardView, worksheetsCardView, statisticsCardView, contactCardView;
+    CardView thoughtRecordCardView;
+    CardView gradedExposureCardView;
+    CardView fearDiaryCardView;
+    CardView situationalAnalysisCardView;
+    TextView hotStreakCounter;
+
 
     // firebase
     DatabaseReference reference;
@@ -38,84 +39,16 @@ public class StatisticsActivity extends AppCompatActivity {
 
     protected void setUp(){
         //Hooks
-        moodLogCardView = findViewById(R.id.moodLogCardView);
-        worksheetsCardView = findViewById(R.id.worksheetsCardView);
-        statisticsCardView = findViewById(R.id.statisticsCardView);
-        contactCardView = findViewById(R.id.contactCardView);
-
+        thoughtRecordCardView = findViewById(R.id.thoughtRecordCardView);
+        gradedExposureCardView = findViewById(R.id.gradedExposureCardView);
+        fearDiaryCardView = findViewById(R.id.fearDiaryCardView);
+        situationalAnalysisCardView = findViewById(R.id.fearDiaryCardView);
+        hotStreakCounter = findViewById(R.id.hotStreakCounter);
         user = new User();
         fAuth = FirebaseAuth.getInstance();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.profile_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        final Intent[] intent = {null};
-        switch(item.getItemId()){
-            case R.id.logout:
-                Toast.makeText(this, "Logged out from account", Toast.LENGTH_LONG).show();
-                final String phone = LoginActivity.getUser().getPhone();
-                FirebaseDatabase.getInstance().getReference("user").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        if (snapshot.child(phone).exists() ) {
-                            FirebaseDatabase.getInstance().getReference("user").child(phone).child("loginBefore").setValue("FALSE");
-
-                            LoginActivity.getUser().setPhone("");
-                            LoginActivity.getUser().setName("");
-                            LoginActivity.getUser().setEmail("");
-                            LoginActivity.clearUser();
-
-                            SharedPreferences pref = getSharedPreferences(LoginActivity.myPreference, Context.MODE_PRIVATE);
-
-                            intent[0] = new Intent(StatisticsActivity.this, LoginActivity.class);
-                            startActivity(intent[0]);
-                            finish();
-                        }else{
-                            Toast.makeText(StatisticsActivity.
-                                            this, "Error has occured",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    public void btn_moodleLog(View view) {
-        startActivity(new Intent(getApplicationContext(),MoodLogActivity.class));
-    }
     public void thoughtRecordStatisticsButtonAction(View view){
         startActivity(new Intent(getApplicationContext(),ThoughtRecordStatisticsActivity.class));
-    }
-    // Action for clicking the worksheets cardview
-    protected void worksheetsCardViewAction(){
-        worksheetsCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (StatisticsActivity.this, WorkSheetsActivity.class);
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StatisticsActivity.this);
-                    startActivity(intent);
-                }
-            }
-        });
     }
 }

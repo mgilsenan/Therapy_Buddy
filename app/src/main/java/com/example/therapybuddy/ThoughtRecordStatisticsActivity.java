@@ -32,7 +32,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mood_log_display);
+        setContentView(R.layout.activity_thought_record_statistics);
         setUp();
     }
     protected void setUp(){

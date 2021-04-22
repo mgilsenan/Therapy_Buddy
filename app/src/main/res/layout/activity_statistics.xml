@@ -41,7 +41,7 @@
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_above="@id/worksheetsSelectorGrid"
+                android:layout_above="@id/statisticsSelectorGrid"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
@@ -100,7 +100,7 @@
             </androidx.gridlayout.widget.GridLayout>
 
             <androidx.gridlayout.widget.GridLayout
-                android:id="@+id/worksheetsSelectorGrid"
+                android:id="@+id/statisticsSelectorGrid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/select_statistics">
@@ -152,6 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:onClick="thoughtRecordStatisticsButtonAction"
                     app:cardBackgroundColor="#499DDD"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
