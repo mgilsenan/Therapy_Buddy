@@ -1,25 +1,21 @@
 package com.example.therapybuddy;
 
-import java.util.Date;
-
 public class MoodLog {
-    String mood;
+    int mood;
     String moodDetails;
-    /*
     public MoodLog(){
 
     }
-     */
-    public MoodLog(String mood, String moodDetails) {
+    public MoodLog(int mood, String moodDetails) {
         this.mood = mood;
         this.moodDetails = moodDetails;
     }
 
-    public String getMood() {
+    public int getMood() {
         return mood;
     }
 
-    public void setMood(String mood) {
+    public void setMood(int mood) {
         this.mood = mood;
     }
 
