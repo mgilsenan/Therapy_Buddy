@@ -102,8 +102,8 @@ public class StatisticsActivity extends AppCompatActivity {
     public void btn_moodleLog(View view) {
         startActivity(new Intent(getApplicationContext(),MoodLogActivity.class));
     }
-    public void statisticsButtonAction(View view){
-        startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
+    public void thoughtRecordStatisticsButtonAction(View view){
+        startActivity(new Intent(getApplicationContext(),ThoughtRecordStatisticsActivity.class));
     }
     // Action for clicking the worksheets cardview
     protected void worksheetsCardViewAction(){

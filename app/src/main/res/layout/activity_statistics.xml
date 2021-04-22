@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WorkSheetsActivity"
+    tools:context=".StatisticsActivity"
     android:background="@drawable/background_login">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/selects_statistics"
+                android:id="@+id/select_statistics"
                 android:layout_width="wrap_content"
                 android:layout_height="76dp"
                 android:layout_alignParentStart="true"
@@ -51,8 +51,8 @@
                 android:layout_marginEnd="52dp"
                 android:layout_marginRight="52dp"
                 android:layout_marginBottom="-6dp"
-                android:layout_toEndOf="@+id/selects_statistics"
-                android:layout_toRightOf="@+id/selects_statistics">
+                android:layout_toEndOf="@+id/select_statistics"
+                android:layout_toRightOf="@+id/select_statistics">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/hotstreakCardView"
@@ -103,7 +103,7 @@
                 android:id="@+id/worksheetsSelectorGrid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/selects_statistics">
+                android:layout_below="@id/select_statistics">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/thoughtRecordCardView"
@@ -118,7 +118,7 @@
                     app:layout_gravity="fill"
                     app:layout_row="0"
                     app:layout_rowWeight="1"
-                    android:onClick="thoughtRecordButtonAction">
+                    android:onClick="thoughtRecordStatisticsButtonAction">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -152,7 +152,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:onClick="statisticsButtonAction"
                     app:cardBackgroundColor="#499DDD"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"

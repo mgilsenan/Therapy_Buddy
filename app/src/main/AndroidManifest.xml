@@ -15,7 +15,7 @@
         <activity
             android:name=".ThoughtRecordActivity"
             android:label="@string/title_activity_thought_record"></activity>
-        <activity android:name=".MoodLogActivity" />
+        <activity android:name=".ThoughtRecordStatisticsActivity" />
         <activity android:name=".WorkSheetsActivity" />
         <activity
             android:name=".HomeActivity"
