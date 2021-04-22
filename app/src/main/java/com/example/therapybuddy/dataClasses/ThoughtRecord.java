@@ -2,13 +2,15 @@ package com.example.therapybuddy.dataClasses;
 
 import android.util.Pair;
 import java.util.LinkedList;
+import java.util.List;
+
 public class ThoughtRecord {
     private String upsettingEvent;
-    private LinkedList<EmotionRatingPair> negativeFeelingsList;
+    private List<EmotionRatingPair> negativeFeelingsList;
     private String automaticThoughts;
-    private LinkedList<String> distortions;
+    private List<String> distortions;
     private String rationalResponses;
-    private LinkedList<EmotionRatingPair> updatedFeelingsList;
+    private List<EmotionRatingPair> updatedFeelingsList;
     private int outcomeValue;
 
     //to use for debugging
@@ -26,8 +28,8 @@ public class ThoughtRecord {
     }
 
 
-    public ThoughtRecord(String upsettingEvent, LinkedList<EmotionRatingPair> negativeFeelingsList, String automaticThoughts,
-                         LinkedList<String> distortions, String rationalResponses, LinkedList<EmotionRatingPair> updatedFeelingsList, int outcomeValue){
+    public ThoughtRecord(String upsettingEvent, List<EmotionRatingPair> negativeFeelingsList, String automaticThoughts,
+                         List<String> distortions, String rationalResponses, List<EmotionRatingPair> updatedFeelingsList, int outcomeValue){
         this.upsettingEvent = upsettingEvent;
         this.negativeFeelingsList = negativeFeelingsList;
         this.distortions = distortions;
@@ -45,11 +47,11 @@ public class ThoughtRecord {
         this.upsettingEvent = upsettingEvent;
     }
 
-    public LinkedList<EmotionRatingPair> getNegativeFeelingsList() {
+    public List<EmotionRatingPair> getNegativeFeelingsList() {
         return negativeFeelingsList;
     }
 
-    public void setNegativeFeelingsList(LinkedList<EmotionRatingPair> negativeFeelingsList) {
+    public void setNegativeFeelingsList(List<EmotionRatingPair> negativeFeelingsList) {
         this.negativeFeelingsList = negativeFeelingsList;
     }
 
@@ -61,11 +63,11 @@ public class ThoughtRecord {
         this.automaticThoughts = automaticThoughts;
     }
 
-    public LinkedList<String> getDistortions() {
+    public List<String> getDistortions() {
         return distortions;
     }
 
-    public void setDistortions(LinkedList<String> distortions) {
+    public void setDistortions(List<String> distortions) {
         this.distortions = distortions;
     }
 
@@ -77,11 +79,11 @@ public class ThoughtRecord {
         this.rationalResponses = rationalResponses;
     }
 
-    public LinkedList<EmotionRatingPair> getUpdatedFeelingsList() {
+    public List<EmotionRatingPair> getUpdatedFeelingsList() {
         return updatedFeelingsList;
     }
 
-    public void setUpdatedFeelingsList(LinkedList<EmotionRatingPair> updatedFeelingsList) {
+    public void setUpdatedFeelingsList(List<EmotionRatingPair> updatedFeelingsList) {
         this.updatedFeelingsList = updatedFeelingsList;
     }
 

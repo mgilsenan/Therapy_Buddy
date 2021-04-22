@@ -334,10 +334,10 @@
                 android:visibility="visible"></com.github.mikephil.charting.charts.LineChart>
 
             <Button
-                android:id="@+id/complete_worksheet_btn"
+                android:id="@+id/generate_records_btn"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Complete Worksheet"
+                android:text="Generate Records For This User"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginBottom="12dp"

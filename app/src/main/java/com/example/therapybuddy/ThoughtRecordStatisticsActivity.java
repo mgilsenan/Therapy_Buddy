@@ -58,7 +58,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                     // get all records
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
 //                        ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
-                        records.add(new Pair<>(myDataSnapshot.getKey(),myDataSnapshot.getValue(ThoughtRecord.class)));
+                        records.add(new Pair<>(myDataSnapshot.getKey(), myDataSnapshot.getValue(ThoughtRecord.class)));
 //                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
                     }
                     // computing analytics data
