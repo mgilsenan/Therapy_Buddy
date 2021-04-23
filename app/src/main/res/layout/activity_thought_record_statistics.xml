@@ -28,7 +28,7 @@
                 android:textColor="#5D7047"
                 android:textSize="36dp" />
             <TextView
-                android:id="@+id/upsetting_event_label"
+                android:id="@+id/aggregate_analytics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -249,81 +249,36 @@
 
             </androidx.gridlayout.widget.GridLayout>
 
+
+
+
+
             <TextView
-                android:id="@+id/auatomatic_thoughts_label"
+                android:id="@+id/outcome_graph"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:layout_gravity="left"
-                android:layout_marginLeft="12dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="12dp"
-                android:text="Step Three: Automatic Thoughts"
-                android:textColor="#5D7047"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/automatic_thoughts_label_helper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:layout_gravity="left"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="12dp"
-                android:text="Write the negative thoughts that come to mind automatically. How much do you believe in them?"
-                android:textColor="#5D7047"
-                android:textSize="12dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/automatic_thoughts_description"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:hint="Your automatic thoughts"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/automatic_thoughts_description_value"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:inputType="textMultiLine"
-                    android:transitionName="phone_number_trans" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-
-            <TextView
-                android:id="@+id/outcome_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:layout_gravity="left"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="30dp"
-                android:text="Last Step: Outcome"
+                android:text="Outcomes Over Time"
+                android:textAlignment="center"
                 android:textColor="#5D7047"
-                android:textSize="20dp" />
+                android:textSize="26dp"
+                android:gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/outcome_label_helper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:layout_gravity="left"
+                android:layout_gravity="center"
+                android:textAlignment="center"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="4dp"
-                android:text="Having completed the worksheet exercise, fill the circle which best describes how you feel now."
+                android:text="Here's how you felt after completing your worksheets. 0 stands for SAME, 1 for GOOD, 2 for BETTER, and 3 for BEST."
                 android:textColor="#5D7047"
-                android:textSize="12dp"
+                android:textSize="16dp"
                 />
 
             <com.github.mikephil.charting.charts.LineChart

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.therapybuddy.dataClasses.EmotionRatingPair;
 import com.example.therapybuddy.dataClasses.ThoughtRecord;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -23,11 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -36,8 +38,6 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.jetbrains.annotations.NotNull;
 
 
 public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
@@ -81,12 +81,11 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
 
                         //Camil Chart Stuff
-                        /*ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
+                        ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
                         String[] dataArray = myDataSnapshot.getKey().split("-");
-                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), thoughtRecord.getOutcomeValue()));*/
+                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), thoughtRecord.getOutcomeValue()));
 
                         records.add(new Pair<>(myDataSnapshot.getKey(), myDataSnapshot.getValue(ThoughtRecord.class)));
-//                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
                     }
                     // computing analytics data
                     // total entries
@@ -224,7 +223,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                         updatedFeelingsList.add(new EmotionRatingPair("Sad",28));
                         int outcomeValue = 2;
                         recordsToAdd.add(new Pair<>(date, new ThoughtRecord(upsettingEvent, negativeFeelingsList, automaticThoughts,
-                                distortions, rationalResponses, updatedFeelingsList, outcomeValue)));
+                                distortions, rationalResponses, updatedFeelingsList, outcomeValue,10000)));
 
                         cal.setTime(new Date(cal.getTimeInMillis() - day_milliseconds));
                         date = d.format(cal.getTime());
@@ -242,7 +241,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                         updatedFeelingsList.add(new EmotionRatingPair("Annoyed",80));
                         outcomeValue = 1;
                         recordsToAdd.add(new Pair<>(date, new ThoughtRecord(upsettingEvent, negativeFeelingsList, automaticThoughts,
-                                distortions, rationalResponses, updatedFeelingsList, outcomeValue)));
+                                distortions, rationalResponses, updatedFeelingsList, outcomeValue, 20000)));
 
                         //iterating over the reports, adding those that don't overwrite existing records
                         for (Pair<String, ThoughtRecord> record: recordsToAdd){
@@ -267,6 +266,11 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
         lineChart.setPinchZoom(false);
         lineChart.setDragEnabled(true);
         lineChart.setScaleEnabled(true);
+
+        Description desc = new Description();
+        desc.setText("Horizontal axis: day of the month");
+        desc.setTextSize(16);
+        lineChart.setDescription(desc);
 
         lineChart.getDescription().setEnabled(true);
         lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
