@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_veryhappy" />
+                    app:srcCompat="@drawable/very_happy" />
 
                 <TextView
                     android:id="@+id/radtext"
@@ -69,7 +69,7 @@
                     android:layout_centerVertical="false"
                     android:layout_marginTop="80dp"
                     android:gravity="center_horizontal"
-                    android:text="Excited"
+                    android:text="Great"
                     android:textAlignment="center"
                     android:textColor="#443e38"
                     android:textSize="18dp"
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_good" />
+                    app:srcCompat="@drawable/happy" />
 
                 <TextView
                     android:id="@+id/goodtext"
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="80dp"
                     android:gravity="center_horizontal"
-                    android:text="Happy"
+                    android:text="Good"
                     android:textAlignment="center"
                     android:textColor="#443e38"
                     android:textSize="18dp"
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_neutral" />
+                    app:srcCompat="@drawable/neutral" />
 
                 <TextView
                     android:id="@+id/neutraltext"
@@ -166,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_sad" />
+                    app:srcCompat="@drawable/sad" />
 
                 <TextView
                     android:id="@+id/badtext"
@@ -201,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_awful" />
+                    app:srcCompat="@drawable/very_sad" />
 
                 <TextView
                     android:id="@+id/awfultext"
