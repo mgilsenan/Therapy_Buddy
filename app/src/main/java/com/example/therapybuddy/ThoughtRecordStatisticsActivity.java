@@ -60,7 +60,12 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                 if(dataSnapshot.hasChildren()){
                     // get all records
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
-//                        ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
+
+                        /* Camil Stuff
+                        ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
+                        String[] dataArray = myDataSnapshot.getKey().split("-");
+                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), thoughtRecord.getOutcomeValue()));
+                        **/
                         records.add(new Pair<>(myDataSnapshot.getKey(), myDataSnapshot.getValue(ThoughtRecord.class)));
 //                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
                     }
@@ -131,7 +136,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
         lineDataSet.setValues(dataVals);
         lineDataSet.setColor(Color.rgb(67, 91, 153));
         lineDataSet.setCircleColor(Color.rgb(67, 91, 153));
-        lineDataSet.setLabel("Mood");
+        lineDataSet.setLabel("Outcome");
         lineDataSet.setCircleRadius(5f);
         lineDataSet.setDrawCircles(true);
 
