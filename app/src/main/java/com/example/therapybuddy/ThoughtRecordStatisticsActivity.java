@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.therapybuddy.dataClasses.EmotionRatingPair;
@@ -26,6 +27,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -34,6 +36,8 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
@@ -47,6 +51,9 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
     LineData lineData;
     String databaseModule = "thoughtRecord";
 
+    // text fields
+    TextView totalEntriesView, biggestStreakView, mostOftenEmotionView, mostOftenDistortionView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +61,10 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
         setUp();
     }
     protected void setUp(){
+        totalEntriesView = findViewById(R.id.total_entries_value);
+        biggestStreakView = findViewById(R.id.biggest_streak_value);
+        mostOftenEmotionView = findViewById(R.id.most_often_emotion_value);
+        mostOftenDistortionView = findViewById(R.id.most_often_distortion_value);
         generateRecordBtn = findViewById(R.id.generate_records_btn);
         lineChart = findViewById(R.id.lineChart);
         final String phone = LoginActivity.getUser().getPhone();
@@ -75,12 +86,12 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                     // computing analytics data
                     // total entries
                     int total_entries = records.size();
+                    totalEntriesView.setText(Integer.toString(total_entries));
 
                     // Biggest streak
-                    int biggest_streak = 0;
-                    int streak = 0;
+                    int biggest_streak = 1;
+                    int streak = 1;
                     for (int i = 0; i<records.size()-1; i++){
-                        //todo properly compare dates (I only check days)
                         Date date1 = null;
                         Date date2 = null;
                         try {
@@ -98,10 +109,66 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                                 biggest_streak = streak;
                             }
                         } else {
-                            streak = 0;
+                            streak = 1;
                         }
                     }
+                    biggestStreakView.setText(Integer.toString(biggest_streak));
+                    // getting all emotions of all records and grouping them
+                    LinkedList<EmotionRatingPair> emotions = new LinkedList<>();
+                    boolean absent;
+                    for (Pair<String,ThoughtRecord> record: records){
+                        for (EmotionRatingPair emotionRatingPair: record.second.getNegativeFeelingsList()){
+                            String emotion = emotionRatingPair.getEmotion();
+                            absent = true;
+                            for (EmotionRatingPair emotionRatingPair1: emotions){
+                                if (emotion.equals(emotionRatingPair1.getEmotion())){
+                                    absent = false;
+                                    emotionRatingPair1.setRating(emotionRatingPair1.getRating()+1);
+                                }
+                            }
+                            if (absent){
+                                emotions.add(new EmotionRatingPair(emotion,1));
+                            }
 
+                        }
+                    }
+                    String mostCommonEmotion = "";
+                    int highestRank = 0;
+                    for (EmotionRatingPair emotionRatingPair: emotions){
+                        if (emotionRatingPair.getRating() > highestRank){
+                            mostCommonEmotion = emotionRatingPair.getEmotion();
+                            highestRank = emotionRatingPair.getRating();
+                        }
+                    }
+                    mostOftenEmotionView.setText(mostCommonEmotion);
+
+                    // getting all distortions of all records and grouping them
+                    LinkedList<EmotionRatingPair> distortions = new LinkedList<>();
+                    boolean distortionAbsent;
+                    for (Pair<String,ThoughtRecord> record: records){
+                        for (String distortion: record.second.getDistortions()){
+                            distortionAbsent = true;
+                            for (EmotionRatingPair emotionRatingPair1: distortions){
+                                if (distortion.equals(emotionRatingPair1.getEmotion())){
+                                    distortionAbsent = false;
+                                    emotionRatingPair1.setRating(emotionRatingPair1.getRating()+1);
+                                }
+                            }
+                            if (distortionAbsent){
+                                distortions.add(new EmotionRatingPair(distortion,1));
+                            }
+
+                        }
+                    }
+                    String mostCommonDistortion = "";
+                    int highestDistortionRank = 0;
+                    for (EmotionRatingPair emotionRatingPair: distortions){
+                        if (emotionRatingPair.getRating() > highestDistortionRank){
+                            mostCommonDistortion = emotionRatingPair.getEmotion();
+                            highestDistortionRank = emotionRatingPair.getRating();
+                        }
+                    }
+//                    mostOftenDistortionView.setText(mostCommonDistortion);
 
                     showChart(dataVals);
 
@@ -113,7 +180,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NotNull DatabaseError databaseError) {
                 // Getting Post failed, log a message
                 Toast.makeText(ThoughtRecordStatisticsActivity.this, "Something went wrong while contacting the database!", Toast.LENGTH_LONG).show();
             }
@@ -139,7 +206,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                         // creating the reports to be added to the db
                         ArrayList<Pair<String, ThoughtRecord>> recordsToAdd = new ArrayList<>();
 
-                        cal.setTime(new Date(cal.getTimeInMillis() - 1*day_milliseconds));
+                        cal.setTime(new Date(cal.getTimeInMillis() - day_milliseconds));
                         date = d.format(cal.getTime());
                         String upsettingEvent = "Marriage";
                         List<EmotionRatingPair> negativeFeelingsList = new LinkedList<>();
@@ -151,6 +218,24 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                         List<EmotionRatingPair> updatedFeelingsList = new LinkedList<>();
                         updatedFeelingsList.add(new EmotionRatingPair("Sad",28));
                         int outcomeValue = 2;
+                        recordsToAdd.add(new Pair<>(date, new ThoughtRecord(upsettingEvent, negativeFeelingsList, automaticThoughts,
+                                distortions, rationalResponses, updatedFeelingsList, outcomeValue)));
+
+                        cal.setTime(new Date(cal.getTimeInMillis() - day_milliseconds));
+                        date = d.format(cal.getTime());
+                        upsettingEvent = "Equipment not cooperating";
+                        negativeFeelingsList = new LinkedList<>();
+                        negativeFeelingsList.add(new EmotionRatingPair("Angry",90));
+                        negativeFeelingsList.add(new EmotionRatingPair("Annoyed",85));
+                        automaticThoughts = "I'm never gonna get this done";
+                        distortions = new LinkedList<>();
+                        distortions.add("SHOULD STATEMENTS");
+                        distortions.add("ALL-OR-NOTHING THINKING");
+                        rationalResponses = "There's probably more than one solution to this.";
+                        updatedFeelingsList = new LinkedList<>();
+                        updatedFeelingsList.add(new EmotionRatingPair("Angry",75));
+                        updatedFeelingsList.add(new EmotionRatingPair("Annoyed",80));
+                        outcomeValue = 1;
                         recordsToAdd.add(new Pair<>(date, new ThoughtRecord(upsettingEvent, negativeFeelingsList, automaticThoughts,
                                 distortions, rationalResponses, updatedFeelingsList, outcomeValue)));
 
