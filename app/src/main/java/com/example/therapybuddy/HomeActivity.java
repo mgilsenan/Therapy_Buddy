@@ -41,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
     CardView moodLogCardView, worksheetsCardView, statisticsCardView, contactCardView;
 
     // firebase
-    DatabaseReference reference;
     FirebaseAuth fAuth;
 
     protected void setUp(){
@@ -115,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void statsButtonAction(View view){
-        startActivity(new Intent(getApplicationContext(),MoodLogDisplayActivity.class));
+        startActivity(new Intent(getApplicationContext(),StatisticsActivity.class));
 
     }
     // Action for clicking the worksheets cardview

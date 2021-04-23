@@ -268,6 +268,15 @@
                 android:textSize="15sp"
                 android:transitionName="continue_trans" />
 
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="54dp"
+                android:onClick="moodLogDisplay"
+                android:text="See Previous Logs" />
+
         </RelativeLayout>
 
     </LinearLayout>
