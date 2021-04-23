@@ -80,11 +80,11 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                     // get all records
                     for(DataSnapshot myDataSnapshot: dataSnapshot.getChildren()){
 
-                        /* Camil Stuff
-                        ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
+                        //Camil Chart Stuff
+                        /*ThoughtRecord thoughtRecord = myDataSnapshot.getValue(ThoughtRecord.class);
                         String[] dataArray = myDataSnapshot.getKey().split("-");
-                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), thoughtRecord.getOutcomeValue()));
-                        **/
+                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), thoughtRecord.getOutcomeValue()));*/
+
                         records.add(new Pair<>(myDataSnapshot.getKey(), myDataSnapshot.getValue(ThoughtRecord.class)));
 //                        dataVals.add(new Entry(Integer.parseInt(dataArray[2]), moodLog.getMood()));
                     }
