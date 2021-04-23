@@ -104,7 +104,7 @@
         android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="create a new account? "
+        android:text="SIGN UP"
         android:background="#00000000"
         android:textSize="12sp"
         android:textColor="@color/black"

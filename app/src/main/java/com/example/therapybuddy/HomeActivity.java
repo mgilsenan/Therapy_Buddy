@@ -113,8 +113,10 @@ public class HomeActivity extends AppCompatActivity {
     public void worksheetsButtonAction(View view){
         startActivity(new Intent(getApplicationContext(),WorkSheetsActivity.class));
     }
+
     public void statsButtonAction(View view){
         startActivity(new Intent(getApplicationContext(),MoodLogDisplayActivity.class));
+
     }
     // Action for clicking the worksheets cardview
     protected void worksheetsCardViewAction(){

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="150dp"
-            android:text="Tell us how you are today by selecting either of the emojis and writing a little bit about how you feel."
+            android:text="Tell us how you are today by selecting any of the emojis and writing a little bit about how you feel."
             android:textColor="#443e38"
             android:textSize="18dp"
             android:transitionName="message_trans" />
@@ -59,7 +59,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_veryhappy" />
+                    app:srcCompat="@drawable/very_happy"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <TextView
                     android:id="@+id/radtext"
@@ -69,7 +70,7 @@
                     android:layout_centerVertical="false"
                     android:layout_marginTop="80dp"
                     android:gravity="center_horizontal"
-                    android:text="Excited"
+                    android:text="Great"
                     android:textAlignment="center"
                     android:textColor="#443e38"
                     android:textSize="18dp"
@@ -96,7 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_good" />
+                    app:srcCompat="@drawable/happy"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <TextView
                     android:id="@+id/goodtext"
@@ -104,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="80dp"
                     android:gravity="center_horizontal"
-                    android:text="Happy"
+                    android:text="Good"
                     android:textAlignment="center"
                     android:textColor="#443e38"
                     android:textSize="18dp"
@@ -131,7 +133,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_neutral" />
+                    app:srcCompat="@drawable/neutral"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <TextView
                     android:id="@+id/neutraltext"
@@ -166,7 +169,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_sad" />
+                    app:srcCompat="@drawable/sad"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <TextView
                     android:id="@+id/badtext"
@@ -201,7 +205,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/icons_awful" />
+                    app:srcCompat="@drawable/very_sad"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <TextView
                     android:id="@+id/awfultext"

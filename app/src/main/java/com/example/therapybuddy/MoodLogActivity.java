@@ -8,9 +8,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.github.mikephil.charting.utils.Utils;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MoodLogActivity extends AppCompatActivity {
 
@@ -35,6 +35,8 @@ public class MoodLogActivity extends AppCompatActivity {
     RelativeLayout relativeLayout_neutral;
     RelativeLayout relativeLayout_bad;
     RelativeLayout relativeLayout_awful;
+    private long time;
+    Calendar c;
 
     ImageView[] selected = new ImageView[5];
 
@@ -63,6 +65,10 @@ public class MoodLogActivity extends AppCompatActivity {
         selected[2] = findViewById(R.id.Selected2);
         selected[3] = findViewById(R.id.Selected3);
         selected[4] = findViewById(R.id.Selected4);
+
+        //Time stats
+        c = Calendar.getInstance();
+        time = c.getTimeInMillis();
     }
 
     protected void moodLogSubmitBtnAction(){
@@ -111,7 +117,10 @@ public class MoodLogActivity extends AppCompatActivity {
                                         else if (relativeValue[4])
                                             mood = 0;
                                     }
-                                    MoodLog m = new MoodLog(mood, moodDetails);
+                                    //track time to complete worksheet
+                                    c = Calendar.getInstance();
+                                    time = c.getTimeInMillis()-time;
+                                    MoodLog m = new MoodLog(mood, moodDetails, time);
                                     reference.child(LoginActivity.getUser().phone).child("moodLog").child(date).setValue(m);  //Get the array
                                     toast1 = Toast.makeText(MoodLogActivity.this, "Successful", Toast.LENGTH_LONG);
                                     toast1.show();
