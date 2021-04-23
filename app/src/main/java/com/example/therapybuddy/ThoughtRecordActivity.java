@@ -1,10 +1,6 @@
 package com.example.therapybuddy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +24,9 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class ThoughtRecordActivity extends AppCompatActivity {
     // todo change best for great in the frontend, send the word "good,great,etc" instead of a number
 
@@ -38,7 +37,6 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     List<Spinner> newNegativeWordSpinners = new LinkedList<>();
     List<TextInputLayout> newNegativeWordSpinnerValues = new LinkedList<>();
     List<SwitchMaterial> distortionSwitches = new LinkedList<>();
-
     TextInputLayout upsetting_event_description, automatic_thoughts_description,
     rational_responses_description;
 
@@ -49,6 +47,9 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     String[] distortion_names = {"ALL-OR-NOTHING THINKING", "OVERGENERALIZATION", "MENTAL FILTER",
             "DISCOUNTING THE POSITIVES", "JUMPING TO CONCLUSIONS", "MAGNIFICATION / MINIMIZATION",
             "EMOTIONAL REASONING", "SHOULD STATEMENTS","LABELING", "PERSONALIZING THE BLAME"};
+
+    long time;
+    Calendar c;
 
 
     protected void setUp(){
@@ -108,6 +109,10 @@ public class ThoughtRecordActivity extends AppCompatActivity {
         for(Spinner spinner: newNegativeWordSpinners){
             spinner.setAdapter(adapter);
         }
+
+        //Start timer
+        c = Calendar.getInstance();
+        time = c.getTimeInMillis();
 
         //Getting the submit button
         thoughtRecordSubmitBtn = findViewById(R.id.complete_worksheet_btn);
@@ -244,9 +249,13 @@ public class ThoughtRecordActivity extends AppCompatActivity {
             }
         }
 
+        //calculate time
+        c = Calendar.getInstance();
+        time = c.getTimeInMillis() - time;
+
         // extract data from the frontend fields
         return new ThoughtRecord(event_description, negativeFeelingsList, automaticThoughts,
-                distortions, rationalResponses, updatedFeelingsList, outcomeValue);
+                distortions, rationalResponses, updatedFeelingsList, outcomeValue, time);
     }
 
     @Override

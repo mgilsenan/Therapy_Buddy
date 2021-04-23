@@ -1,6 +1,5 @@
 package com.example.therapybuddy.dataClasses;
 
-import android.util.Pair;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ public class ThoughtRecord {
     private String rationalResponses;
     private List<EmotionRatingPair> updatedFeelingsList;
     private int outcomeValue;
+    private long timeToComplete;
 
     //to use for debugging
     public ThoughtRecord(){
@@ -25,11 +25,12 @@ public class ThoughtRecord {
         updatedFeelingsList = new LinkedList<EmotionRatingPair>();
         updatedFeelingsList.add(new EmotionRatingPair("empty",10));
         outcomeValue = 20;
+        timeToComplete = 15000;
     }
 
 
     public ThoughtRecord(String upsettingEvent, List<EmotionRatingPair> negativeFeelingsList, String automaticThoughts,
-                         List<String> distortions, String rationalResponses, List<EmotionRatingPair> updatedFeelingsList, int outcomeValue){
+                         List<String> distortions, String rationalResponses, List<EmotionRatingPair> updatedFeelingsList, int outcomeValue, long timeToComplete){
         this.upsettingEvent = upsettingEvent;
         this.negativeFeelingsList = negativeFeelingsList;
         this.distortions = distortions;
@@ -37,6 +38,7 @@ public class ThoughtRecord {
         this.outcomeValue = outcomeValue;
         this.rationalResponses = rationalResponses;
         this.updatedFeelingsList = updatedFeelingsList;
+        this.timeToComplete = timeToComplete;
     }
 
     public String getUpsettingEvent() {
@@ -93,5 +95,13 @@ public class ThoughtRecord {
 
     public void setOutcomeValue(int outcomeValue) {
         this.outcomeValue = outcomeValue;
+    }
+
+    public long getTimeToComplete() {
+        return timeToComplete;
+    }
+
+    public void setTimeToComplete(long timeToComplete) {
+        this.timeToComplete = timeToComplete;
     }
 }
