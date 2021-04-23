@@ -66,7 +66,7 @@ public class MoodLogActivity extends AppCompatActivity {
         selected[3] = findViewById(R.id.Selected3);
         selected[4] = findViewById(R.id.Selected4);
 
-        //Tiem stats
+        //Time stats
         c = Calendar.getInstance();
         time = c.getTimeInMillis();
     }
