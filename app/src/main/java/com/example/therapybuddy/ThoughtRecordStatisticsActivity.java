@@ -3,9 +3,11 @@ package com.example.therapybuddy;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.therapybuddy.dataClasses.EmotionRatingPair;
 import com.example.therapybuddy.dataClasses.ThoughtRecord;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -20,17 +22,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
 
+    FirebaseDatabase rootNode;
     DatabaseReference databaseReference;
     Button generateRecordBtn;
     LineChart lineChart;
@@ -76,8 +84,8 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                         Date date1 = null;
                         Date date2 = null;
                         try {
-                            date1= new SimpleDateFormat("yyyy/MM/dd").parse(records.get(i).first);
-                            date2= new SimpleDateFormat("yyyy/MM/dd").parse(records.get(i+1).first);
+                            date1= new SimpleDateFormat("yyyy-MM-dd").parse(records.get(i).first);
+                            date2= new SimpleDateFormat("yyyy-MM-dd").parse(records.get(i+1).first);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -113,7 +121,55 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
         });
 
         // generating records
-        
+        generateRecordsButnAction();
+    }
+
+    protected void generateRecordsButnAction(){
+        generateRecordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference("user").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        long day_milliseconds = 86400000;
+                        DateFormat d = new SimpleDateFormat("yyyy-MM-dd");
+                        Calendar cal = Calendar.getInstance();
+                        String date = d.format(cal.getTime());
+                        final String phone = LoginActivity.getUser().getPhone();
+                        // creating the reports to be added to the db
+                        ArrayList<Pair<String, ThoughtRecord>> recordsToAdd = new ArrayList<>();
+
+                        cal.setTime(new Date(cal.getTimeInMillis() - 1*day_milliseconds));
+                        date = d.format(cal.getTime());
+                        String upsettingEvent = "Marriage";
+                        List<EmotionRatingPair> negativeFeelingsList = new LinkedList<>();
+                        negativeFeelingsList.add(new EmotionRatingPair("Sad",44));
+                        String automaticThoughts = "I don't want to be here";
+                        List<String> distortions = new LinkedList<>();
+                        distortions.add("SHOULD STATEMENTS");
+                        String rationalResponses = "I should be somewhere else";
+                        List<EmotionRatingPair> updatedFeelingsList = new LinkedList<>();
+                        updatedFeelingsList.add(new EmotionRatingPair("Sad",28));
+                        int outcomeValue = 2;
+                        recordsToAdd.add(new Pair<>(date, new ThoughtRecord(upsettingEvent, negativeFeelingsList, automaticThoughts,
+                                distortions, rationalResponses, updatedFeelingsList, outcomeValue)));
+
+                        //iterating over the reports, adding those that don't overwrite existing records
+                        for (Pair<String, ThoughtRecord> record: recordsToAdd){
+                            if (!snapshot.child(phone).child(databaseModule).child(record.first).exists()) {
+                                databaseReference.child(record.first).setValue(record.second);  //Inserting record in db
+                            }
+                        }
+                        Toast.makeText(ThoughtRecordStatisticsActivity.this, "Thought Records Added Successfully!", Toast.LENGTH_LONG).show();
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(ThoughtRecordStatisticsActivity.this, "Something went wrong when generating records!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
     }
 
     private void showChart(ArrayList<Entry> dataVals) {
