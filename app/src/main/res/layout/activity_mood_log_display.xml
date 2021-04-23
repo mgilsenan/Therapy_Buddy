@@ -16,9 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
-            android:text="MoodLogs"
+            android:text="How have you been feeling?"
             android:textColor="#443e38"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <com.github.mikephil.charting.charts.LineChart
