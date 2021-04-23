@@ -243,18 +243,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/moodLogSubmitBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="1"
-            android:backgroundTint="#7ca493"
-            android:text="Submit"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:transitionName="continue_trans" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -262,12 +251,18 @@
             android:animationCache="true">
 
             <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
+                android:id="@+id/moodLogSubmitBtn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="moodLogDisplay"
-                android:text="See Previous Logs" />
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
+                android:backgroundTint="#7ca493"
+                android:text="Submit"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:transitionName="continue_trans" />
+
         </RelativeLayout>
 
     </LinearLayout>
