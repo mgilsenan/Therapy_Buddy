@@ -173,7 +173,7 @@ public class ThoughtRecordStatisticsActivity extends AppCompatActivity {
                             highestDistortionRank = emotionRatingPair.getRating();
                         }
                     }
-//                    mostOftenDistortionView.setText(mostCommonDistortion);
+                    mostOftenDistortionView.setText(mostCommonDistortion.replace(" ","\n"));
 
                     showChart(dataVals);
 
